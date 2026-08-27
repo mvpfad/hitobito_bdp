@@ -3,109 +3,8 @@
 //  or later. See the COPYING file at the top-level directory or at
 //  https://github.com/hitobito/hitobito_bdp.
 
-footer#page-footer-bdp {
-  background-color: $blue-light;
-  padding-top: calc(4vh + 3vw);
-}
-
-.footer-swoosh {
-  fill: $blue;
-}
-
-.footer-logo-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  padding-block: 2rem;
-  padding-left: $footer-gutter-left;
-}
-
-.footer-logo {
-  height: 5rem;
-  width: auto;
-}
-
-.footer-content {
-  padding-left: $footer-gutter-left;
-}
-
-#page-footer .footer-content .footer-nav-link,
-#page-footer .footer-content .footer-changelog a {
-  position: relative;
-  display: inline-block;
-  color: $green;
-  font-size: 18px;
-  font-weight: 700;
-  text-decoration: none;
-  padding-bottom: 10px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 6px;
-    background-color: currentColor;
-    mask: {
-      image: $footer-nav-link-decoration;
-      repeat: no-repeat;
-      position: left center;
-      size: auto 100%;
-    }
-    -webkit-mask-image: $footer-nav-link-decoration;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: left center;
-    -webkit-mask-size: auto 100%;
-  }
-
-  &:hover,
-  &:focus {
-    color: $footer-nav-link-hover-color;
-  }
-}
-
-#page-footer .footer-content .footer-nav-link {
-  margin-bottom: 1rem;
-}
-
-#page-footer .footer-content .footer-links {
-  margin-bottom: 0;
-}
-
-#page-footer .footer-content .footer-changelog {
-  a[data-bs-toggle="collapse"] i.fa-chevron-right {
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-
-  a[data-bs-toggle="collapse"][aria-expanded="true"] i.fa-chevron-right {
-    transform: rotate(90deg);
-  }
-}
-
-#page-header a {
-  color: $blue;
-}
-
-.svg-bdp-text {
-  fill: $blue;
-}
-
-html body.is-logged-out.oauth-dialog div#page {
-  .main-header {
-    &::before {
-      height: 0;
-    }
-
-    &::after {
-      content: none;
-    }
-  }
-
-  & .container-fluid {
-    width: 100vw;
-  }
-}
+// Document & resets
+// ----------------------------------------------------------------------------
 
 :root {
   color-scheme: light;
@@ -119,6 +18,13 @@ body {
   background-color: $blue;
   min-height: 100vh;
 }
+
+a:hover {
+  color: $kothe;
+}
+
+// Page frame, header, navigation & sheets
+// ----------------------------------------------------------------------------
 
 #page {
   position: relative;
@@ -205,15 +111,49 @@ body {
   }
 }
 
+// When logged out, the header postitioning must be adjusted
+.is-logged-out #page,
+#page.is-nav-not-rendered {
+  padding-top: 0;
+
+  > .container-fluid {
+    padding-top: 10vh;
+  }
+}
+
+html body.is-logged-out.oauth-dialog {
+  background-color: $blue-light;
+
+  > header {
+    background: #fff;
+    width: 100%;
+    margin-inline: 0;
+    padding-inline: 1rem;
+  }
+
+ div#page > .container-fluid {
+      width: 100vw;
+    }
+}
+
 .logo {
   margin: $top-bar-height 0 0 1rem;
   padding-inline: 0;
 }
+
 .logo-image {
   display: flex;
   align-items: center;
   max-width: 200px;
   max-height: 60px;
+}
+
+#page-header a {
+  color: $blue;
+}
+
+.svg-bdp-text {
+  fill: $blue;
 }
 
 // Position the header just above the logo but behind the mobile menü 
@@ -244,9 +184,91 @@ body {
   margin: 0.5rem 0 0.25rem;
 }
 
-a:hover {
-  color: $kothe;
+// Footer
+// ----------------------------------------------------------------------------
+
+footer#page-footer-bdp {
+  background-color: $blue-light;
+  padding-top: calc(4vh + 3vw);
 }
+
+.footer-swoosh {
+  fill: $blue;
+}
+
+.footer-logo-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding-block: 2rem;
+  padding-left: $footer-gutter-left;
+}
+
+.footer-logo {
+  height: 5rem;
+  width: auto;
+}
+
+.footer-content {
+  padding-left: $footer-gutter-left;
+}
+
+#page-footer .footer-content .footer-nav-link,
+#page-footer .footer-content .footer-changelog a {
+  position: relative;
+  display: inline-block;
+  color: $green;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  padding-bottom: 10px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    background-color: currentColor;
+    mask: {
+      image: $footer-nav-link-decoration;
+      repeat: no-repeat;
+      position: left center;
+      size: auto 100%;
+    }
+    -webkit-mask-image: $footer-nav-link-decoration;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    -webkit-mask-size: auto 100%;
+  }
+
+  &:hover,
+  &:focus {
+    color: $footer-nav-link-hover-color;
+  }
+}
+
+#page-footer .footer-content .footer-nav-link {
+  margin-bottom: 1rem;
+}
+
+#page-footer .footer-content .footer-links {
+  margin-bottom: 0;
+}
+
+#page-footer .footer-content .footer-changelog {
+  a[data-bs-toggle="collapse"] i.fa-chevron-right {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  a[data-bs-toggle="collapse"][aria-expanded="true"] i.fa-chevron-right {
+    transform: rotate(90deg);
+  }
+}
+
+// Content: tables, forms, buttons, links & components
+// ----------------------------------------------------------------------------
 
 .btn {
   &:hover,
@@ -255,16 +277,6 @@ a:hover {
     color: $white;
     background: $kothe;
     border-color: $kothe;
-  }
-}
-
-// When logged out, the header postitioning must be adjusted
-.is-logged-out #page,
-#page.is-nav-not-rendered {
-  padding-top: 0;
-
-  > .container-fluid {
-    padding-top: 10vh;
   }
 }
 
@@ -279,22 +291,19 @@ a:hover {
 
 // Dark Mode color settings for BdP
 @media (prefers-color-scheme: dark) {
+  // Document & resets
+  // --------------------------------------------------------------------------
+
   :root {
     color-scheme: dark;
   }
 
-  .autoComplete_wrapper ul li:hover {
-    background-color: rgba($gray-dark, 0.3);
-    color: $white;
-
-    & > mark {
-      color: $white;
-    }
+  body {
+    background-color: $black;
   }
 
-  .svg-bdp-text {
-    fill: $white;
-  }
+  // Generic link colours. Every scoped link rule below relies on
+  // outranking these, so they must stay at the top of this block.
 
   a {
     color: $white;
@@ -304,36 +313,10 @@ a:hover {
     color: $green;
   }
 
-  #page-header a {
-    color: $white;
-  }
+  // Page frame, header, navigation & sheets
+  // --------------------------------------------------------------------------
 
-  #page-header a:hover {
-    color: $green;
-  }
-
-  input {
-    background-color: $gray-darker;
-  }
-
-  .sheet,
-  #content {
-    color: $gray-lighter;
-  }
-
-  .breadcrumb ul li {
-    text-shadow: none;
-  }
-
-  .sheet.parent {
-    background: $gray-darker !important;
-  }
-
-  body {
-    background-color: $black;
-  }
-
-  #page, footer#page-footer-bdp {
+  #page {
     background: $gray-darker;
   }
 
@@ -374,8 +357,33 @@ a:hover {
     }
   }
 
+  #page-header a {
+    color: $white;
+  }
+
+  #page-header a:hover {
+    color: $green;
+  }
+
+  .svg-bdp-text {
+    fill: $white;
+  }
+
   #content {
     background: $gray-darker;
+  }
+
+  .sheet,
+  #content {
+    color: $gray-lighter;
+  }
+
+  .sheet.parent {
+    background: $gray-darker !important;
+  }
+
+  .breadcrumb ul li {
+    text-shadow: none;
   }
 
   .nav-left {
@@ -427,6 +435,56 @@ a:hover {
     color: $gray-lighter !important;
   }
 
+  .nav-pills .nav-link {
+    color: $gray-lighter;
+
+    &:hover {
+      color: $white;
+      background-color: darken($gray-darker, 8%);
+    }
+
+    &.active {
+      background-color: $blue;
+      color: $white;
+    }
+  }
+
+  .nav-tabs {
+    border-color: $gray-dark;
+
+    .nav-link {
+      color: $gray-lighter;
+      border-color: $transparent;
+
+      &:hover {
+        border-color: $gray-dark;
+        color: $white;
+      }
+
+      &.active {
+        background-color: darken($gray-darker, 5%);
+        border-color: $gray-dark $gray-dark $transparent $gray-dark;
+        color: $white;
+      }
+    }
+  }
+
+  // Footer
+  // --------------------------------------------------------------------------
+
+  footer#page-footer-bdp {
+    background: $gray-darker;
+  }
+
+  .footer-swoosh {
+    fill: $black;
+  }
+
+  // Content: tables, forms, buttons, links & components
+  // --------------------------------------------------------------------------
+
+  // Tables
+
   .table-responsive .table {
     background-color: darken($gray-darker, 5%);
   }
@@ -470,6 +528,12 @@ a:hover {
     background-color: darken($gray-lighter, 10%);
   }
 
+  // Forms & inputs
+
+  input {
+    background-color: $gray-darker;
+  }
+
   input:not([type="submit"]):not([type="button"]):not([type="reset"]):not(
       [type="checkbox"]
     ):not([type="radio"]):not([type="range"]),
@@ -487,53 +551,37 @@ a:hover {
     }
   }
 
+  .form-select {
+    background-color: $gray-darker;
+    color: $gray-lighter;
+    border-color: $gray-dark;
+  }
+
+  .form-select:disabled {
+    background-color: lighten($gray-darker, 5%);
+  }
+
   .input-group-text {
     background-color: $gray-darker;
     color: $gray-lighter;
     border-color: $gray-dark;
   }
 
-  // compiled $blue-dark is near-black and invisible on dark backgrounds
-  .btn {
-    color: $white;
-
-    // compiled hover uses $purple background — use a subtle dark fill instead
-    &:hover,
-    &:focus,
-    &:active {
-      background: $gray-dark;
-      border-color: $white;
-      color: $white;
-    }
+  .form-striped fieldset:nth-of-type(2n) {
+    background-color: darken($gray-darker, 5%);
   }
 
-  .contactable {
-    background-color: darken($gray-darker, 5%);
+  .label-columns .controls label:hover {
+    background-color: $transparent;
+  }
+
+  .ts-control {
     color: $gray-lighter;
   }
 
-  .btn-outline-primary {
-    --bs-btn-color: #{$white};
-    --bs-btn-border-color: #{$white};
-    --bs-btn-hover-color: #{$black};
-    --bs-btn-hover-bg: #{$white};
-    --bs-btn-hover-border-color: #{$white};
-    --bs-btn-active-color: #{$black};
-    --bs-btn-active-bg: #{$white};
-    --bs-btn-active-border-color: #{$white};
-  }
-
-  .dropdown-menu {
-    --bs-dropdown-bg: #{$gray-darker};
-    --bs-dropdown-color: #{$gray-lighter};
-    --bs-dropdown-border-color: #{$gray-dark};
-    --bs-dropdown-link-color: #{$gray-lighter};
-    --bs-dropdown-link-hover-color: #{$gray-lighter};
-    --bs-dropdown-link-hover-bg: #{darken($gray-darker, 8%)};
-    --bs-dropdown-link-active-color: #{$white};
-    --bs-dropdown-link-active-bg: #{$purple};
-    --bs-dropdown-link-disabled-color: #{$gray};
-    --bs-dropdown-divider-bg: #{$gray-dark};
+  .ts-dropdown .active {
+    background-color: lighten($gray-darker, 5%);
+    color: $gray-lighter;
   }
 
   [role="listbox"] {
@@ -563,111 +611,12 @@ a:hover {
     background-color: darken($gray-darker, 5%);
   }
 
-  #role_info {
-    .well.help {
-      background-color: darken($gray-darker, 5%);
-      border-color: $gray-dark;
-      color: $gray-lighter;
+  .autoComplete_wrapper ul li:hover {
+    background-color: rgba($gray-dark, 0.3);
+    color: $white;
 
-      p {
-        color: $gray-lighter;
-      }
-
-      ul {
-        color: $gray-lighter;
-
-        li {
-          color: $gray-lighter;
-        }
-      }
-    }
-  }
-
-  #job_observations {
-    .bg-light {
-      background-color: darken($gray-darker, 5%) !important;
-    }
-
-    .container-fluid {
-      color: $gray-lighter;
-
-      i {
-        color: $gray-lighter;
-      }
-
-      a {
-        color: $gray-lighter;
-
-        &:hover {
-          color: $green;
-        }
-      }
-    }
-  }
-
-  .invoice-state {
-    background-color: darken($gray-darker, 5%);
-    color: $gray-lighter;
-  }
-
-  .alert-success a {
-    color: $gray-darker;
-  }
-
-  .alert-success a:hover {
-    color: $blue;
-  }
-
-  .blue {
-    color: $green;
-  }
-
-  .pagination {
-    --bs-pagination-bg: #{$gray-darker};
-    --bs-pagination-color: #{$gray-lighter};
-    --bs-pagination-border-color: #{$gray-dark};
-    --bs-pagination-hover-bg: #{darken($gray-darker, 8%)};
-    --bs-pagination-hover-color: #{$white};
-    --bs-pagination-hover-border-color: #{$gray-dark};
-    --bs-pagination-active-bg: #{$blue};
-    --bs-pagination-active-color: #{$white};
-    --bs-pagination-active-border-color: #{$blue};
-    --bs-pagination-disabled-bg: #{$gray-darker};
-    --bs-pagination-disabled-color: #{$gray};
-    --bs-pagination-disabled-border-color: #{$gray-dark};
-  }
-
-  .nav-pills .nav-link {
-    color: $gray-lighter;
-
-    &:hover {
+    & > mark {
       color: $white;
-      background-color: darken($gray-darker, 8%);
-    }
-
-    &.active {
-      background-color: $blue;
-      color: $white;
-    }
-  }
-
-  .nav-tabs {
-    border-color: $gray-dark;
-
-    .nav-link {
-      color: $gray-lighter;
-      border-color: $transparent;
-
-      &:hover {
-        border-color: $gray-dark;
-        color: $white;
-      }
-
-      &.active {
-        background-color: darken($gray-darker, 5%);
-        border-color: $gray-dark $gray-dark $transparent $gray-dark;
-        color: $white;
-      }
     }
   }
 
@@ -755,50 +704,93 @@ a:hover {
     color: $white;
   }
 
-  .well {
-    background-color: darken($gray-darker, 5%);
-  }
+  // Buttons & links
 
-  .invoice-form-recipient-fields {
-    background-color: darken($gray-darker, 5%);
-  }
+  // compiled $blue-dark is near-black and invisible on dark backgrounds
+  .btn {
+    color: $white;
 
-  .group-pills {
-    border-color: $gray-dark !important;
-
-    .border-start {
-      border-color: $gray-dark !important;
+    // compiled hover uses $purple background — use a subtle dark fill instead
+    &:hover,
+    &:focus,
+    &:active {
+      background: $gray-dark;
+      border-color: $white;
+      color: $white;
     }
   }
 
-  .contactable .address {
-    background-color: $gray-darker;
+  .btn-outline-primary {
+    --bs-btn-color: #{$white};
+    --bs-btn-border-color: #{$white};
+    --bs-btn-hover-color: #{$black};
+    --bs-btn-hover-bg: #{$white};
+    --bs-btn-hover-border-color: #{$white};
+    --bs-btn-active-color: #{$black};
+    --bs-btn-active-bg: #{$white};
+    --bs-btn-active-border-color: #{$white};
   }
 
-  .form-striped fieldset:nth-of-type(2n) {
-    background-color: darken($gray-darker, 5%);
+  .alert-success a {
+    color: $gray-darker;
   }
 
-  .progress {
-    background-color: $black;
-    border: 1px solid $gray-dark;
+  .alert-success a:hover {
+    color: $blue;
   }
 
-  .progress-bar {
-    background-color: $blue;
+  .blue {
+    color: $green;
   }
 
-  .footer-swoosh {
-    fill: $black;
-  }
-
-  .chip {
-    background-color: darken($gray-darker, 5%);
+  a.anchor {
     color: $gray-lighter;
   }
 
-  .chip.chip-add:hover {
-    background-color: darken($gray-darker, 5%);
+  // Components
+
+  .dropdown-menu {
+    --bs-dropdown-bg: #{$gray-darker};
+    --bs-dropdown-color: #{$gray-lighter};
+    --bs-dropdown-border-color: #{$gray-dark};
+    --bs-dropdown-link-color: #{$gray-lighter};
+    --bs-dropdown-link-hover-color: #{$gray-lighter};
+    --bs-dropdown-link-hover-bg: #{darken($gray-darker, 8%)};
+    --bs-dropdown-link-active-color: #{$white};
+    --bs-dropdown-link-active-bg: #{$purple};
+    --bs-dropdown-link-disabled-color: #{$gray};
+    --bs-dropdown-divider-bg: #{$gray-dark};
+  }
+
+  .pagination {
+    --bs-pagination-bg: #{$gray-darker};
+    --bs-pagination-color: #{$gray-lighter};
+    --bs-pagination-border-color: #{$gray-dark};
+    --bs-pagination-hover-bg: #{darken($gray-darker, 8%)};
+    --bs-pagination-hover-color: #{$white};
+    --bs-pagination-hover-border-color: #{$gray-dark};
+    --bs-pagination-active-bg: #{$blue};
+    --bs-pagination-active-color: #{$white};
+    --bs-pagination-active-border-color: #{$blue};
+    --bs-pagination-disabled-bg: #{$gray-darker};
+    --bs-pagination-disabled-color: #{$gray};
+    --bs-pagination-disabled-border-color: #{$gray-dark};
+  }
+
+  .popover {
+    --bs-popover-bg: #{$gray-darker};
+    --bs-popover-color: #{$gray-lighter};
+    --bs-popover-body-color: #{$gray-lighter};
+  }
+
+  .popover-header {
+    background-color: darken($gray-darker, 10%);
+    color: $gray-lighter;
+  }
+
+  .bs-popover-bottom > .popover-arrow::after,
+  .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::after {
+    border-bottom-color: darken($gray-darker, 10%);
   }
 
   .accordion, .accordion-header, .accordion-body {
@@ -818,51 +810,100 @@ a:hover {
     --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   }
 
+  .progress {
+    background-color: $black;
+    border: 1px solid $gray-dark;
+  }
+
+  .progress-bar {
+    background-color: $blue;
+  }
+
+  .chip {
+    background-color: darken($gray-darker, 5%);
+    color: $gray-lighter;
+  }
+
+  .chip.chip-add:hover {
+    background-color: darken($gray-darker, 5%);
+  }
+
+  .well {
+    background-color: darken($gray-darker, 5%);
+  }
+
+  .group-pills {
+    border-color: $gray-dark !important;
+
+    .border-start {
+      border-color: $gray-dark !important;
+    }
+  }
+
   .bg-white {
     background-color: darken($gray-darker, 5%) !important;
   }
 
-  .form-select {
+  // Page-specific
+
+  .contactable {
+    background-color: darken($gray-darker, 5%);
+    color: $gray-lighter;
+  }
+
+  .contactable .address {
     background-color: $gray-darker;
-    color: $gray-lighter;
-    border-color: $gray-dark;
   }
 
-  .form-select:disabled {
-    background-color: lighten($gray-darker, 5%);
-  }
-
-  .ts-dropdown .active {
-    background-color: lighten($gray-darker, 5%);
+  .invoice-state {
+    background-color: darken($gray-darker, 5%);
     color: $gray-lighter;
   }
 
-  .label-columns .controls label:hover {
-    background-color: $transparent;
+  .invoice-form-recipient-fields {
+    background-color: darken($gray-darker, 5%);
   }
 
-  .popover {
-    --bs-popover-bg: #{$gray-darker};
-    --bs-popover-color: #{$gray-lighter};
-    --bs-popover-body-color: #{$gray-lighter};
+  #role_info {
+    .well.help {
+      background-color: darken($gray-darker, 5%);
+      border-color: $gray-dark;
+      color: $gray-lighter;
+
+      p {
+        color: $gray-lighter;
+      }
+
+      ul {
+        color: $gray-lighter;
+
+        li {
+          color: $gray-lighter;
+        }
+      }
+    }
   }
 
-  .popover-header {
-    background-color: darken($gray-darker, 10%);
-    color: $gray-lighter;
-  }
+  #job_observations {
+    .bg-light {
+      background-color: darken($gray-darker, 5%) !important;
+    }
 
-  .bs-popover-bottom > .popover-arrow::after,
-  .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::after {
-    border-bottom-color: darken($gray-darker, 10%);
-  }
+    .container-fluid {
+      color: $gray-lighter;
 
-  a.anchor {
-    color: $gray-lighter;
-  }
+      i {
+        color: $gray-lighter;
+      }
 
-  .ts-control {
-    color: $gray-lighter;
+      a {
+        color: $gray-lighter;
+
+        &:hover {
+          color: $green;
+        }
+      }
+    }
   }
 
   .documentation-markdown code {
