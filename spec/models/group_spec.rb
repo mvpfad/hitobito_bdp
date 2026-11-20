@@ -19,4 +19,16 @@ describe Group do
       expect(decorator.supports_self_registration?).to be false
     end
   end
+
+  describe "fee_kind_restrictable" do
+    it "is enabled for Landesverband" do
+      expect(Group::Landesverband.fee_kind_restrictable).to be true
+    end
+
+    it "is disabled for Bundesebene, Bezirk and Stamm" do
+      [Group::Bundesebene, Group::Bezirk, Group::Stamm].each do |type|
+        expect(type.fee_kind_restrictable).to be false
+      end
+    end
+  end
 end
