@@ -21,12 +21,14 @@ describe Group do
   end
 
   describe "fee_kind_restrictable" do
-    it "is enabled for Landesverband" do
-      expect(Group::Landesverband.fee_kind_restrictable).to be true
+    it "is enabled for Bundesebene and Landesverband" do
+      [Group::Bundesebene, Group::Landesverband].each do |type|
+        expect(type.fee_kind_restrictable).to be true
+      end
     end
 
-    it "is disabled for Bundesebene, Bezirk and Stamm" do
-      [Group::Bundesebene, Group::Bezirk, Group::Stamm].each do |type|
+    it "is disabled for Bezirk and Stamm" do
+      [Group::Bezirk, Group::Stamm].each do |type|
         expect(type.fee_kind_restrictable).to be false
       end
     end
