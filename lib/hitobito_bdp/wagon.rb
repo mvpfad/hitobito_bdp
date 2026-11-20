@@ -51,7 +51,6 @@ module HitobitoBdp
         layer_group.used_attributes += [:rechtsform]
       end
 
-      # Landesverbände may restrict their own fee kinds (hitobito_pfadi_de)
       Group::Landesverband.fee_kind_restrictable = true
 
       Role::Permissions << :create_membership_roles
