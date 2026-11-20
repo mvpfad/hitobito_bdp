@@ -51,6 +51,8 @@ module HitobitoBdp
         layer_group.used_attributes += [:rechtsform]
       end
 
+      Group::Landesverband.fee_kind_restrictable = true
+
       Role::Permissions << :create_membership_roles
 
       [Group::Bundesebene::MVAdmin,
